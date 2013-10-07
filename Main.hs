@@ -2,14 +2,11 @@
 module Main where
 
 import Pos
-import GHC.Generics
 
-unsafeIfy :: Pos -> Pos
-unsafeIfy inp = case from inp of
-    M1 (M1 (M1 (K1 x))) -> to $ M1 (M1 (M1 (K1 (negate x))))
+unsafePos :: Pos
+unsafePos = read "Pos (-2)"
 
 main = do
-    let (Just x) = mkPos 2
     putStrLn "Should print \"Pos (-2)\""
-    print $ unsafeIfy x
+    print $ unsafePos
     putStrLn "If it printed Pos (-2), we've successfully violated the abstraction boundaries of module Pos"
